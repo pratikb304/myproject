@@ -78,3 +78,9 @@ resource "google_compute_firewall" "allow-ssh" {
     }
   
 }
+
+resource "google_compute_network" "network2" {
+    name = "network2"
+    auto_create_subnetworks = true
+  
+}
