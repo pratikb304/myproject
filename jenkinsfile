@@ -5,7 +5,23 @@ pipeline {
   stages {
     stage('Terraform') {
       steps {
-        RUN Terraform init
+        Terraform init
+      }
+    }
+  }
+
+  stages {
+    stage('Terraform') {
+      steps {
+        Terraform plan
+      }
+    }
+  }
+
+  stages {
+    stage('Terraform') {
+      steps {
+        Terraform deploy
       }
     }
   }
