@@ -1,28 +1,30 @@
 pipeline {
   agent any
-
-
-  stages {
-    stage('Terraform') {
-      steps {
-        Terraform init
-      }
-    }
-  }
+   docker { Terraform:latest }
 
   stages {
-    stage('Terraform') {
-      steps {
-        Terraform plan
-      }
+        stage("Checkout") {
+            ...
+        }
+        stage("Terraform init") {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        ...
     }
-  }
 
   stages {
-    stage('Terraform') {
-      steps {
-        Terraform deploy
-      }
+        stage("build") {
+            ...
+        }
+        stage("Terraform deploy") {
+            steps {
+                sh 'terraform deploy'
+            }
+        }
+        ...
     }
-  }
+
+  
 }
